@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const url = require("url");
 
 // TODO: wrap the next block inside a function
 
@@ -52,10 +53,24 @@ const server = http.createServer(function (req, res) {
       }
     });
   } else if (req.url.startsWith("/anime")) {
+    // const requestedUrl = url.parse(req.url);
+    console.log(requestedUrl);
     // End Points
     if (req.method === "GET") {
-      res.writeHead(200, { "Content-Type": "text/plain" });
-      res.end("This is the anime page");
+      // if is the main path"
+      if (requestedUrl.path === requestedUrl.pathname) {
+        // TODO: find appropriate context-type for json
+        fs.readFile("./data/anime.json", "utf8", (err, json) => {
+          if (err) {
+            // TODO: manage error
+            console.log(err);
+          } else {
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end(json);
+          }
+        });
+      }
+      // serve something to web browser while this section is developed
     } else if (req.method === "POST") {
     } else if (req.method === "PUT") {
     } else if (req.method === "DELETE") {
