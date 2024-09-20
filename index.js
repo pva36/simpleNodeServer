@@ -1,7 +1,6 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-const { queryObjects } = require("v8");
 
 function main() {
   // server
@@ -112,24 +111,10 @@ function main() {
                 res.end(...match);
               });
             }
-            // if specific anime's properties were requested
-          // } else if (Object.keys(queryObject).length > 1) {
-          //   getJsonFile((jsonFile) => {
-          //     const jsonObject = JSON.parse(jsonFile);
-
-          //     let requestedProperties = [];
-          //     for (const elem of jsonObject[queryObject.id]) {
-          //       requestedProperties.push(JSON.stringify(elem));
-          //     }
-
-          //     res.writeHead(200, { "Content-Type": "text/plain" });
-          //     res.end(...requestedProperties);
-          //     // TODO: read specific properties of a anime.
-          //   });
-          // }
-
+          }
           console.log(`GET request to '${requestedUrl.href}' was received.`);
         }
+
         // serve something to web browser while this section is developed
       } else if (req.method === "POST") {
       } else if (req.method === "PUT") {
