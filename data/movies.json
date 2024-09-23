@@ -1,0 +1,32 @@
+{
+  "1": {
+    "name": "Citizen Kane",
+    "genre": "epic",
+    "year": "1941",
+    "director": "Orson Welles"
+  },
+  "2": {
+    "name": "Sunset Boulevard",
+    "genre": "Film Noir",
+    "year": "1950",
+    "director": "Billy Wilder"
+  },
+  "3": {
+    "name": "Rear Window",
+    "genre": "Mystery",
+    "year": "1954",
+    "director": "Alfred Hitchcock"
+  },
+  "4": {
+    "name": "Metropolis",
+    "genre": "Sci-Fi",
+    "year": "1927",
+    "director": "Fritz Lang"
+  },
+  "5": {
+    "name": "Solaris",
+    "genre": "Sci-Fi",
+    "year": "1972",
+    "director": "Andrei Tarkovsky"
+  }
+}
