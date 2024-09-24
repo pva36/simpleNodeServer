@@ -7,14 +7,22 @@ const router = express.Router();
 // route.use(authMiddleware)
 
 // router-level middlewares
-router.get("/", moviesController.getMovies);
 
-router.post("/", moviesController.createMovie);
+// GET
+router.get("/", moviesController.getMovies);
 
 router.get("/:id", moviesController.getMovieById);
 
 // TODO:
-// - delete
-// - update
+// router.get("/:id/:property", moviesController.getMoviesProperty);
+
+// POST
+router.post("/", moviesController.createMovie);
+
+// PUT
+// router.put("/:id", moviesController.updateMovie);
+
+// DELETE
+// router.delete("/:id", moviesController.deleteMovie);
 
 module.exports = router;
