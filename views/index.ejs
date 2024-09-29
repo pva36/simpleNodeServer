@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+      <ul>
+        <% movies.forEach(movie => { %>
+          <li>
+          “<%= movie.name%>”, directed by <%= movie.director %>.</li>
+          <a href="/<%= movie.id %>/update" id="update-button">Update</a>
+          <form class="delete-form" action="/<%= movie.id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        <% }) %>
+      </ul>
+      <a href="/add" id="add-button">Add a new Movie!</a>
+    <script src="/index.js"></script>
+  </body>
+</html>

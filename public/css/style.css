@@ -1,3 +1,8 @@
-body {
-  background-color: orange;
+form.delete-form {
+  display: inline;
+}
+
+a.update-button,
+a.add-button {
+  /* todo */
 }
