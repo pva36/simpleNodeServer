@@ -1,9 +1,8 @@
-// const asyncHandler = require("express-async-handler");
 const fs = require("node:fs");
 const movies = require("../data/movies.js");
-// const FILE = "./data/movies.json";
 
 /**************************** HELPER FUNCTIONS ******************************/
+
 const getMoviesArray = (moviesObject) => {
   let moviesArray = [];
   for (const id in moviesObject) {
@@ -12,21 +11,23 @@ const getMoviesArray = (moviesObject) => {
   return moviesArray;
 };
 
-class NotFoundError extends Error {
-  constructor(message) {
-    super(message);
-    this.statusCode = 404;
-    this.name = "NotFoundError";
-  }
-}
+// class NotFoundError extends Error {
+//   constructor(message) {
+//     super(message);
+//     this.statusCode = 404;
+//     this.name = "NotFoundError";
+//   }
+// }
 
 /********************************* HOME *************************************/
+
 exports.moviesListGet = (req, res) => {
   const moviesArray = getMoviesArray(movies.getAllMovies());
   res.render("index", { title: "My favourite movies!", movies: moviesArray });
 };
 
 /******************************** ADD ***************************************/
+
 exports.moviesAddGet = (req, res) => {
   res.render("add", { title: "Add Movie" });
 };
@@ -43,6 +44,7 @@ exports.moviesAddPost = (req, res) => {
 };
 
 /******************************* UPDATE *************************************/
+
 exports.moviesUpdateGet = (req, res) => {
   const moviesArray = getMoviesArray(movies.getAllMovies());
   res.render("update", {
@@ -64,6 +66,7 @@ exports.moviesUpdatePut = (req, res, next) => {
 };
 
 /******************************** DELETE ************************************/
+
 exports.moviesDelete = (req, res, next) => {
   movies.deleteMovie(req.params.id);
   movies.writeJsonFile();

@@ -6,7 +6,7 @@ class Movies {
     this.object = JSON.parse(
       fs.readFileSync(path.join(__dirname, "./movies.json"), "utf-8"),
     );
-    this.id = 1; // type string
+    this.id = 1; // type `String`
     this.getNextId();
   }
   getNextId() {

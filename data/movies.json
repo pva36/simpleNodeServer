@@ -2,7 +2,7 @@
     "1": {
         "id": "1",
         "name": "Citizen Kane",
-        "genre": "epic",
+        "genre": "Epic",
         "year": "1941",
         "director": "Orson Welles"
     },
@@ -26,5 +26,12 @@
         "genre": "Sci-Fi",
         "year": "1927",
         "director": "Fritz Lang"
+    },
+    "5": {
+        "id": 5,
+        "name": "Solaris",
+        "genre": "Sci-Fi",
+        "year": "1972",
+        "director": "Andrei Tarkovsky"
     }
 }

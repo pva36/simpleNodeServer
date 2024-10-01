@@ -2,7 +2,23 @@ form.delete-form {
   display: inline;
 }
 
-a.update-button,
-a.add-button {
-  /* todo */
+a,
+button {
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #e2e2e2;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+a:hover,
+button:hover {
+  background-color: #f2ffff;
 }
