@@ -14,7 +14,7 @@
           <li>
           “<%= movie.name%>”, directed by <%= movie.director %>.</li>
           <a href="/<%= movie.id %>/update" id="update-button">Update</a>
-          <form class="delete-form" action="/<%= movie.id %>/delete" method="POST">
+          <form class="delete-form" action="/delete/<%= movie.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
           </form>
         <% }) %>

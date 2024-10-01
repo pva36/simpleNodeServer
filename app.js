@@ -1,11 +1,13 @@
 const express = require("express");
 const path = require("node:path");
-// TODO: implement required routers
 const moviesRouter = require("./routes/moviesRoutes.js");
+const methodOverride = require("method-override");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride("_method"));
 
 // app level middlewares
 app.use(express.static("./public"));

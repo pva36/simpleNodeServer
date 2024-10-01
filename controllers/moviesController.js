@@ -1,6 +1,16 @@
 // const asyncHandler = require("express-async-handler");
 const fs = require("node:fs");
-const FILE = "./data/movies.json";
+const movies = require("../data/movies.js");
+// const FILE = "./data/movies.json";
+
+/**************************** HELPER FUNCTIONS ******************************/
+const getMoviesArray = (moviesObject) => {
+  let moviesArray = [];
+  for (const id in moviesObject) {
+    moviesArray.push(moviesObject[id]);
+  }
+  return moviesArray;
+};
 
 class NotFoundError extends Error {
   constructor(message) {
@@ -10,85 +20,52 @@ class NotFoundError extends Error {
   }
 }
 
-exports.moviesListGet = (req, res, next) => {
-  fs.readFile(FILE, "utf8", (err, data) => {
-    if (err) {
-      next(err);
-    } else {
-      let objectData = JSON.parse(data);
-      let movies = [];
-      for (const movie in objectData) {
-        movies.push(objectData[movie]);
-      }
-      //console.log(movies);
-      res.render("index", { title: "My movies", movies: movies });
-      //res.json(objectData);
-    }
-  });
+/********************************* HOME *************************************/
+exports.moviesListGet = (req, res) => {
+  const moviesArray = getMoviesArray(movies.getAllMovies());
+  res.render("index", { title: "My favourite movies!", movies: moviesArray });
 };
 
-exports.moviesUpdateGet = (req, res) => {
-  fs.readFile(FILE, "utf8", (err, data) => {
-    if (err) {
-      next(err);
-    } else {
-      let objectData = JSON.parse(data);
-      let movies = [];
-      for (const movie in objectData) {
-        movies.push(objectData[movie]);
-      }
-      // console.log(movies);
-      // console.log(movies[req.params.id - 1]);
-      res.render("update", {
-        title: "My movies",
-        movie: movies[req.params.id - 1],
-      });
-    }
-  });
-};
-
+/******************************** ADD ***************************************/
 exports.moviesAddGet = (req, res) => {
   res.render("add", { title: "Add Movie" });
 };
-// exports.getMovieById = (req, res, next) => {
-//   const movieId = req.params.id;
-//
-//   fs.readFile(FILE, "utf8", (err, data) => {
-//     if (err) {
-//       next(err);
-//     } else {
-//       let objectData = JSON.parse(data);
-//       if (!(movieId in objectData)) {
-//         next(new NotFoundError(`movie with index ${movieId} not found.`));
-//       } else {
-//         res.json(objectData[movieId]);
-//       }
-//     }
-//   });
-// };
 
-/* OLD */
-// exports.getMovies = (req, res, next) => {
-//   fs.readFile(FILE, "utf8", (err, data) => {
-//     if (err) {
-//       next(err);
-//     } else {
-//       let objectData = JSON.parse(data);
-//       res.json(objectData);
-//     }
-//   });
-// };
+exports.moviesAddPost = (req, res) => {
+  movies.addMovie(
+    req.body.name,
+    req.body.genre,
+    req.body.year,
+    req.body.director,
+  );
+  movies.writeJsonFile();
+  res.redirect("/");
+};
 
-// exports.createMovie = (req, res, next) => {
-//   // TODO
-//   // create movies
-//   console.log("creating a new movie");
-//   res.send("creating a new movie");
-// };
+/******************************* UPDATE *************************************/
+exports.moviesUpdateGet = (req, res) => {
+  const moviesArray = getMoviesArray(movies.getAllMovies());
+  res.render("update", {
+    title: "Update Movie",
+    movie: moviesArray[req.params.id - 1],
+  });
+};
 
-// TODO:
-// const getMoviesProperty = (req, res, next) => {}
+exports.moviesUpdatePut = (req, res, next) => {
+  // const movieToUpdate = movies.getMovieById(req.params.id);
+  movies.updateMovie(req.params.id, {
+    name: req.body.name,
+    genre: req.body.genre,
+    year: req.body.year,
+    director: req.body.director,
+  });
+  movies.writeJsonFile();
+  res.redirect("/");
+};
 
-// const updateMovie = (req, res, next) => {}
-
-// const deleteMovie = (req, res, next) => {}
+/******************************** DELETE ************************************/
+exports.moviesDelete = (req, res, next) => {
+  movies.deleteMovie(req.params.id);
+  movies.writeJsonFile();
+  res.redirect("/");
+};

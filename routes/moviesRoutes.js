@@ -3,24 +3,25 @@ const moviesController = require("../controllers/moviesController.js");
 
 const moviesRouter = express.Router();
 
-/* get all movies (main page) */
+/********************** get all movies (HOME) *******************************/
 moviesRouter.get("/", moviesController.moviesListGet);
 
-/* add movies */
-// TODO:
+/************************* add movies ***************************************/
+
 moviesRouter.get("/add", moviesController.moviesAddGet);
 // TODO:
-// moviesRouter.post("/add", moviesController.moviesAddPost);
+moviesRouter.post("/add", moviesController.moviesAddPost);
 
-/* update movies */
-// TODO:
+/************************ update movies *************************************/
+
+// TODO: maybe change path to /update/:id
 moviesRouter.get("/:id/update", moviesController.moviesUpdateGet);
-// TODO:
-// moviesRouter.post("/:id/update", moviesController.moviesUpdatePost);
+// TODO: change to Put, maybe change path to /update/:id
+moviesRouter.put("/:id/update", moviesController.moviesUpdatePut);
 
-/* delete movies */
-// TODO:
-// moviesRouter.post(":id/delete", moviesController.moviesDeletePost);
+/***************************** delete movies ********************************/
+// TODO: maybe change path to
+moviesRouter.delete("/delete/:id", moviesController.moviesDelete);
 
 /* OLD STUFF */
 
