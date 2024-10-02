@@ -16,11 +16,6 @@ app.use(express.static("./public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-// testing errors
-app.get("/error", (req, res) => {
-  throw new Error("error");
-});
-
 app.use("/", moviesRouter);
 
 app.all("*", (req, res) => {
@@ -28,11 +23,11 @@ app.all("*", (req, res) => {
 });
 
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  // is this a good idea?
-  res.status(err.statusCode || 500).send(err.message);
-});
+// app.use((err, req, res, next) => {
+//   console.error(err);
+//   // is this a good idea?
+//   res.status(err.statusCode || 500).send(err.message);
+// });
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
