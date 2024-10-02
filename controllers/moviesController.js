@@ -23,13 +23,15 @@ const getMoviesArray = (moviesObject) => {
 
 exports.moviesListGet = (req, res) => {
   const moviesArray = getMoviesArray(movies.getAllMovies());
-  res.render("index", { title: "My favourite movies!", movies: moviesArray });
+  res
+    .status(200)
+    .render("index", { title: "My favourite movies!", movies: moviesArray });
 };
 
 /******************************** ADD ***************************************/
 
 exports.moviesAddGet = (req, res) => {
-  res.render("add", { title: "Add Movie" });
+  res.status(200).render("add", { title: "Add Movie" });
 };
 
 exports.moviesAddPost = (req, res) => {
@@ -40,14 +42,14 @@ exports.moviesAddPost = (req, res) => {
     req.body.director,
   );
   movies.writeJsonFile();
-  res.redirect("/");
+  res.status(201).redirect("/");
 };
 
 /******************************* UPDATE *************************************/
 
 exports.moviesUpdateGet = (req, res) => {
   const moviesArray = getMoviesArray(movies.getAllMovies());
-  res.render("update", {
+  res.status(200).render("update", {
     title: "Update Movie",
     movie: moviesArray[req.params.id - 1],
   });
@@ -62,7 +64,7 @@ exports.moviesUpdatePut = (req, res, next) => {
     director: req.body.director,
   });
   movies.writeJsonFile();
-  res.redirect("/");
+  res.status(200).redirect("/");
 };
 
 /******************************** DELETE ************************************/
@@ -70,5 +72,5 @@ exports.moviesUpdatePut = (req, res, next) => {
 exports.moviesDelete = (req, res, next) => {
   movies.deleteMovie(req.params.id);
   movies.writeJsonFile();
-  res.redirect("/");
+  res.status(200).redirect("/");
 };
