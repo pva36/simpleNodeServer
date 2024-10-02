@@ -1,5 +1,46 @@
+h1 {
+  text-align: center;
+}
+
+ul {
+  background-color: lightblue;
+}
+
+h2 {
+  display: inline;
+}
+
 form.delete-form {
   display: inline;
+}
+
+form.add-update {
+  max-width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+form.add-update > label {
+  display: block;
+}
+
+form.add-update > button,
+a.home,
+a#add-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+a.home,
+a#add-button {
+  margin-top: 20px;
+  width: 100px;
 }
 
 a,

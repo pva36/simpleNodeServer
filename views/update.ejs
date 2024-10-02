@@ -8,7 +8,8 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <form action="/<%= movie.id %>/update?_method=PUT" method="POST">
+    <div class="center">
+    <form class="add-update" action="/<%= movie.id %>/update?_method=PUT" method="POST">
       <label for="name">Name</label>
       <input type="text" name="name" id="name" value="<%= movie.name %>" required>
       <label for="genre">Genre</label>
@@ -19,6 +20,7 @@
       <input type="text" name="director" id="director" value="<%= movie.director %>" required>
       <button type="submit">Update</button>
     </form>
-    <a href="/">Back to Home</a>
+    </div>
+    <a class="home" href="/">Back to Home</a>
   </body>
 </html>

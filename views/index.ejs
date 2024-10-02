@@ -9,16 +9,18 @@
   </head>
   <body>
     <h1><%= title %></h1>
+      <div class="center">
       <ul>
         <% movies.forEach(movie => { %>
           <li>
-          “<%= movie.name%>”, directed by <%= movie.director %>.</li>
+          <h2>“<%= movie.name%>”</h2>, directed by <%= movie.director %>.</li>
           <a class="btn-link" href="/<%= movie.id %>/update" id="update-button">Update</a>
           <form class="delete-form" action="/delete/<%= movie.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
           </form>
         <% }) %>
       </ul>
+      </div>
       <a href="/add" id="add-button">Add a new Movie!</a>
     <script src="/index.js"></script>
   </body>
