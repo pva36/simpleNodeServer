@@ -40,4 +40,4 @@ app.listen(PORT, () => {
 });
 
 // for testing purposes
-module.exports = { app };
+module.exports = app;
